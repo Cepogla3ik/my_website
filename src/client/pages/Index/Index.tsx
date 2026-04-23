@@ -1,0 +1,7 @@
+import styles from "./Index.module.scss";
+
+export default function Index() {
+  return (
+    <div className={styles.index}>My website</div>
+  );
+}

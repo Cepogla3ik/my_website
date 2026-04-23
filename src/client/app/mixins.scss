@@ -1,0 +1,15 @@
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+@mixin transform-center {
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+@mixin font-set($s, $w, $f: 'Sans-Serif') {
+  font-size: $s;
+  font-weight: $w;
+  font-family: $f;
+}
