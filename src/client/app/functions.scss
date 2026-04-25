@@ -3,3 +3,10 @@
 @function randomInt($min, $max) {
   @return math.floor(math.random() * ($max - $min + 1)) + $min;
 }
+@function rem($pixel) {
+  @if math.is-unitless($pixel) {
+    @return math.div($pixel, 16) + rem;
+  } @else {
+    @error "Don't use units in the argument of rem() function";
+  }
+}
