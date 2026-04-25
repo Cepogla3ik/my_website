@@ -11,6 +11,7 @@ export default defineConfig({
         additionalData: `
           @use "@client/app/variables" as *;
           @use "@client/app/mixins" as *;
+          @use "@client/app/functions" as *;
         `
       }
     }

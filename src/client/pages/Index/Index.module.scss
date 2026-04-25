@@ -1,10 +1,31 @@
 .index {
-  @include flex-center;
   position: relative;
-  @include font-set(clamp(30px, 5vw, 50px), 600);
   width: 100vw;
   height: 100dvh;
-  background-image: linear-gradient(15deg, hsl(0 0% 75%), hsl(0 0% 50%));
-  color: hsl(0 0% 15%);
-  user-select: none;
+  background: black;
+  
+  &::after {
+    content: "";
+    left: 50%;
+    top: 50%;
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    background-color: hsl(260 90% 60% / 0.8);
+    border-radius: 50%;
+    box-shadow: 0 0 45px 35px hsl(260 90% 60%);
+    pointer-events: none;
+    user-select: none;
+    transition: left 2s ease, top 2s ease;
+    animation: animate 3s ease-in-out infinite;
+  }
+}
+
+@keyframes animate {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.3);
+  }
 }
