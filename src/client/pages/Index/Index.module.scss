@@ -1,6 +1,14 @@
 .index {
   position: relative;
+  margin: 0;
+  padding: 0;
   width: 100vw;
   height: 100dvh;
-  background: black;
+  display: grid;
+  grid-template-columns: min(20%, toRem(288)) auto;
+  grid-template-rows: toRem(100) auto;
+
+  grid-template-areas: 
+    "nav  header"
+    "nav  main";
 }
