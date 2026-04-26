@@ -45,6 +45,7 @@ export default class Generator {
     }
     return this.shuffle(result);
   }
+  regenerate() { this._token = this.generate() }
   private getRandomWord(): string {
     const wordsArray = Array.from(this.#words);
     const randomIndex = randomInt(0, wordsArray.length - 1);

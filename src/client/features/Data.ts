@@ -1,9 +1,10 @@
+import Generator from '@shared/util/Generator';
+
 export default class Data<T extends Record<string, any> = Record<string, any>> {
   readonly #name: string;
   readonly #data: T;
-  readonly #id: number;
+  readonly #id: string;
 
-  static #idCount = 0;
   static #allDatas: Map<string, Data<any>> = new Map()
   
   constructor(name: string, data: T) {
@@ -14,10 +15,9 @@ export default class Data<T extends Record<string, any> = Record<string, any>> {
     
     this.#name = name;
     this.#data = data;
-    this.#id = Data.#idCount;
+    this.#id = new Generator("dataId", 12, { includesSpecials: true }).token;
     
     Data.#allDatas.set(name, this);
-    Data.#idCount++;
   }
 
   
