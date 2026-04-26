@@ -1,48 +1,41 @@
-export default class Data {
-  _name: string;
-  _data: Record<string, unknown>;
-  _id: number;
+export default class Data<T extends Record<string, any> = Record<string, any>> {
+  readonly #name: string;
+  readonly #data: T;
+  readonly #id: number;
 
   static #idCount = 0;
-  static #allDatas: Record<string, Data> = {}
+  static #allDatas: Map<string, Data<any>> = new Map()
   
-  constructor(name: string, data: Record<string, unknown>) {
-    let isNameTaken = null;
-    let takenNameId = null;
-
-    for (const [dataName/* , dataClass */] of Object.entries(Data.#allDatas)) {
-      isNameTaken = dataName === name;
-      if (isNameTaken) {
-        takenNameId = Data.#allDatas[dataName]._id;
-        break;
-      };
+  constructor(name: string, data: T) {
+    if (Data.#allDatas.has(name)) {
+      const existing = Data.#allDatas.get(name)!;
+      throw new Error(`This name is taken (data id: ${existing.id})`);
     }
-
-    if (isNameTaken) throw new Error(`This name is taken (data id: ${takenNameId})`);
     
-    this._name = name;
-    this._data = data;
-    this._id = Data.#idCount;
+    this.#name = name;
+    this.#data = data;
+    this.#id = Data.#idCount;
     
-    const thisDataConfig = { [name]: this } 
-    
-    Object.assign(Data.#allDatas, thisDataConfig);
+    Data.#allDatas.set(name, this);
     Data.#idCount++;
   }
+
   
-  get data() { return this._data }
-  get name() { return this._name }
-  get id() { return this._id }
-  get dataString() { return JSON.stringify(this._data) }
-  get keys() { return Object.keys(this._data) }
-  get entries() { return Object.entries(this._data) }
+  get data() { return this.#data }
+  get name() { return this.#name }
+  get id() { return this.#id }
+
+  get dataString() { return JSON.stringify(this.#data) }
+  get keys() { return Object.keys(this.#data) }
+  get values() { return Object.values(this.#data) }
+  get entries() { return Object.entries(this.#data) }
   
-  add(newData: Record<string, unknown>) {
-    Object.assign(this._data, newData);
+  add(newData: Partial<T>) {
+    Object.assign(this.#data, newData);
     return this;
   }
-  remove(removeData: string) {
-    delete this._data[removeData];
+  remove(key: keyof T) {
+    delete this.#data[key];
     return this;
   }
 }
