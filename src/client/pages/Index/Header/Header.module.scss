@@ -1,5 +1,5 @@
 .header {
-  background-color: hsl(0 0% 45%);
+  /* background-color: hsl(0 0% 45%); */
   grid-area: header;
   @include flex-center;
   @include fluid-text(32, 18);
