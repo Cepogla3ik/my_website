@@ -6,6 +6,7 @@ $entry-border: hsl(15 50% 55%);
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(toRem(60), 1fr));
   min-height: toRem(40);
+  transition: background 0.2s ease;
   
   &:not(:last-child) {
     border-bottom: toRem(2) solid $entry-border;
@@ -21,14 +22,37 @@ $entry-border: hsl(15 50% 55%);
     padding-inline: 5px;
     overflow-x: auto;
     white-space: nowrap;
+    user-select: none;
     
     &:not(:last-child) {
       border-right: toRem(2) solid $entry-border;
+    }
+    
+    &:focus {
+      outline: none;
+      box-shadow: 0 0 6px 2px hsl(15 60% 60%) inset;
+      background: hsl(15 55% 40%);
     }
   }
 }
 
 .selected {
-  background: hsl(15 50% 25%);
-  color: hsl(15 50% 20%);
+  background: hsl(15 50% 30%);
+  box-shadow: 0 0 6px 2px hsl(15 60% 50%) inset;
+  animation: moveOnSelect 0.5s ease-out;
+}
+
+@keyframes moveOnSelect {
+  0%, 100% {
+    transform: translateX(0);
+    border-radius: 0;
+  }
+  33% {
+    transform: translateX(3px) skew(3.5deg);
+    border-radius: 0 0 3px 3px;
+  }
+  66% {
+    transform: translateX(-1.5px) skew(-1.5deg);
+    border-radius: 0 0 6px 6px;
+  }
 }
