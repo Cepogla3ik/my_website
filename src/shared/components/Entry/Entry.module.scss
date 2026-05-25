@@ -13,9 +13,10 @@ $entry-border: hsl(15 50% 55%);
   }
 
   .slot {
-    @include flex-center;
-    justify-content: safe center;
-    @include fluid-text(30, 18);
+    text-align: center;
+    @include fluid-text(30, 18, true);
+    background: transparent;
+    resize: none;
     font-weight: 500;
     font-family: 'Inter';
     color: hsl(15 50% 85%);
@@ -23,6 +24,7 @@ $entry-border: hsl(15 50% 55%);
     overflow-x: auto;
     white-space: nowrap;
     user-select: none;
+    border: none;
     
     &:not(:last-child) {
       border-right: toRem(2) solid $entry-border;

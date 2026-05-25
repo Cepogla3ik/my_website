@@ -58,7 +58,6 @@ export default function Board() {
         <Entry 
           key={i} 
           index={i}
-          isEntryContentEditable={editableObjectCnf.entry === i}
           selected={selectedEntryIndex === i}
           slotsAmount={entry.length}
           labelsArr={entry} 
