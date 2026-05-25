@@ -1,4 +1,5 @@
 import ToolbarItem from "@shared/components/ToolbarItem/ToolbarItem";
+import Search from "./Search/Search";
 import { useDispatch } from "react-redux";
 import { addEntry, deleteEntry } from "@client/store/slices/boardSlice";
 import styles from "./ToolsBar.module.scss";
@@ -18,8 +19,11 @@ export default function ToolsBar() {
   
   return (
     <div className={styles["tools-bar"]}>
-      <ToolbarItem content={addSvgItem} onClick={() => dispatch(addEntry())} />
-      <ToolbarItem content={deleteSvgItem} onClick={() => dispatch(deleteEntry())} />
+      <div className={styles["interact-buttons"]}>
+        <ToolbarItem content={addSvgItem} onClick={() => dispatch(addEntry())} />
+        <ToolbarItem content={deleteSvgItem} onClick={() => dispatch(deleteEntry())} />
+      </div>
+      <Search />
     </div>
   );
 }

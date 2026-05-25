@@ -1,0 +1,18 @@
+.search {
+  background-color: transparent;
+  border: 2px solid hsl(20 50% 45%);
+  height: 90%;
+  max-width: toRem(140);
+  border-radius: toRem(16);
+  font-weight: 500;
+  font-family: "Inter", sans-serif;
+  @include fluid-text(10, 20);
+  display: flex;
+  align-items: center;
+  padding: 0 toRem(12);
+
+  &:focus {
+    outline: none;
+    border-color: hsl(20 50% 45% / 0.75);
+  }
+}
